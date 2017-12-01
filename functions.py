@@ -60,13 +60,13 @@ def checkIfProdExists(cod):
     arq.close()
     return False
 
-def showRegistry():
-    if os.path.exists("cadastro.txt"):
-        arq = open("cadastro.txt", "r")
+def showRegistry(path):
+    if os.path.exists(path):
+        arq = open(path, "r")
         v = arq.read()
         v.replace("\n"," ")
-        print("Registry: "+ v)
         arq.close()
+        return v
 
 def updateregistry(cod, des, pre, qunt):
     if os.path.exists("cadastro.txt"):
@@ -82,18 +82,9 @@ def updateregistry(cod, des, pre, qunt):
                 find = True
                 v[i] = (" ").join(args)+ " \n"
         arq = open("cadastro.txt", 'r+')
-        arq.write((" ").join(v))
+        for j in v:
+            arq.write(j)
+        arq.close()
         return find
     else:
         return False
-
-
-
-#def sellProd(data, nomeCliente, cod, qunt):
-#print(updateregistry("123","cassetinho","5,0","1"))
-showRegistry()
-sell("Hoje","Victor", "456", "1")
-showRegistry()
-registryProd("321","revolver","300","1")
-registryProd("456","espingarda","300","1")
-sell("Hoje","Victor", "321", "1")
