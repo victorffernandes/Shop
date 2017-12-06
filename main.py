@@ -240,50 +240,91 @@ while(n != ""):
     if n == "4":
         print('\n')
         print("Estoque: \n")
+        r = raw_input("Quer imprimir no estoque.txt?(y/n)")
         reg = showRegistry(CADASTRO)
         if reg == None:
             print("Nenhum produto foi encontrado")
         else:
-            print(reg)
+            arq = open("estoque.txt", "w")
+            if r == "y":
+                arq.write(reg)
+            if r == "n":
+                print(reg)
+            arq.close()
+            print("Sucesso")
     if n == "5":
+        r = raw_input("Quer imprimir no vendas_dia.txt?(y/n)")
         e = raw_input("Insira a data que você quer checar as vendas")
         print("Vendas: \n")
         b = showSellsByDay(e)
         if not(b):
             print("Não há vendas nesse dia")
         else:
+            arq = open("vendas_dia.txt","w")
             for i in b:
-                print(i)
+                if r == "y":
+                    arq.write(i)
+                if r == "n":
+                    print(i)
+            arq.close()
     if n == "6":
         print("Vendas: \n")
         reg = showRegistry(VENDAS)
+        r = raw_input("Quer imprimir no vendas.txt?(y/n)")
         if not(reg):
             print("Nenhuma venda foi encontrada")
         else:
-            print(reg)
+            arq = open("vendas.txt", "w")
+            if r == "y":
+                arq.write(reg)
+            if r == "n":
+                print(reg)
+            arq.close()
+            print("Sucesso")
     if n =="7":
         print("Itens mais vendidos \n")
         b = soldProducts(findHigher)
+        r = raw_input("Quer imprimir no most_item.txt?(y/n)")
         if not(b):
             print("Nenhum produto encontrado. Alguma venda foi feita?")
         else:
+            arq = open("most_item.txt", "w")
             for i in b:
-                print(i)
+                if r == "y":
+                    arq.write(i)
+                if r == "n":
+                    print(i)
+            arq.close()
+            print("Sucesso")
     if n == "8":
         print("Itens menos vendidos \n")
         b = soldProducts(findSmaller)
+        r = raw_input("Quer imprimir no least_item.txt?(y/n)")
         if not (b):
             print("Nenhum produto encontrado. Alguma venda foi feita?")
         else:
+            arq = open("least_item.txt", "w")
             for i in b:
-                print(i)
+                if r == "y":
+                    arq.write(i)
+                if r == "n":
+                    print(i)
+            arq.close()
+            print("Sucesso")
     if n == "9":
         print("Os clientes que mais compram são: \n")
         b = mostValuableClient()
+        r = raw_input("Quer imprimir no most_client.txt?(y/n)")
         if not(b):
             print("Não há clientes. Alguma venda foi feita?")
         else:
+            arq = open("most_client.txt", "w")
             for i in b:
-                print(i)
+                if r == "y":
+                    arq.write(i)
+                if r == "n":
+                    print(i)
+            arq.close()
+            print("Sucesso")
     print("")
     n = raw_input(welcome)
