@@ -24,8 +24,10 @@ def getProdByCod(cod):
 
     find = None
     for i in range(len(v)):
-        if v[i].find(cod) != -1:
-            find = v[i]
+        if v[i] != " \n":
+            j = v[i].split()[0]
+            if j == cod:
+                find = v[i]
     if find == None:
         return None
     else:
@@ -73,7 +75,8 @@ def soldProducts(method):
         arq = open("cadastro.txt","r")
         products = []
         for line in arq:
-            products.append(line.split()[0])
+            if line != " \n":
+                products.append(line.split()[0])
         arq.close()
 
         arq = open("vendas.txt", "r")
@@ -92,6 +95,8 @@ def soldProducts(method):
         for i in chosen:
             res.append(getProdByCod(products[i]))
         return res
+    else:
+        return False
 
 def findHigher(v):
     h = -1
